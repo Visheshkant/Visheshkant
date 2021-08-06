@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @Visheshkant
-- 👀 I’m interested in Coding anf building new things
+- 👀 I’m interested in Coding and building new things
 - 🌱 I’m currently learning Salesforce
 - 💞️ I’m looking to collaborate on Salesforce/Tableau CRM/LWC
 - 📫 How to reach me , Email : visheshkant17@gmail.com
