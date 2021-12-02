@@ -1,0 +1,68 @@
+public class surfStdPricingCtrl {
+    @AuraEnabled
+    public static List<OpportunityLineItem> getOLIData(String oppId){
+        List<OpportunityLineItem> oliList = new List<OpportunityLineItem>();
+        Schema.DescribesObjectResult r = OpportunityLineItem.sObjectType.getDescribe();
+        Map < String, Schema.SObjectField > mapFields = new Map < String, Schema.sObjectField > ();
+        mapFields = r.fields.getMap();
+        String OliQuery = 'Select ';
+        String FieldNames = '';
+        for (String apiName: mapFields.KeySet()) {
+            FieldNames += apiName + ',';
+        }
+        FieldNames = FieldNames.subString(0, FieldNames.length() - 1);
+        OliQuery += FieldNames + ' FROM OpportunityLineItem WHERE OpportunityId ='+ '\'' +oppId +'\'' +' AND IsActive__c = true LIMIT 1';
+        try {
+            oliList = Database.Query(OliQuery);
+        } catch (Exception e) {
+        }
+        return oliList;
+    }
+    
+    @AuraEnabled
+    public static void saveOLI(List<OpportunityLineItem> oliLst){
+        update oliLst;
+    }
+    
+    @AuraEnabled
+    public static void fetchDashboardRec(){
+        List<Customer_Onboarding__c> cobLst = [SELECT id, name, Opportunity__c FROM Customer_Onboarding__c LIMIT 10];
+
+    }
+    
+    public class cobWrapper {
+        @AuraEnabled public String hqName{get;set;}
+        @AuraEnabled public String regName {get;set;}
+        @AuraEnabled public String billingMode{get;set;}
+        @AuraEnabled public String email {get;set;}
+        public cobWrapper(String hqName, String regName, String billingMode, String email){
+            this.hqName = hqName;
+            this.regName = regName;
+            this.billingMode = billingMode;
+            this.email = email;
+        }
+    }
+    
+    public class oppWrapper {
+        @AuraEnabled public String name{get;set;}
+        @AuraEnabled public String invMode {get;set;}
+        @AuraEnabled public String contractMode{get;set;}
+        @AuraEnabled public String status {get;set;}
+        public oppWrapper(String name, String invMode, String contractMode, String status){
+            this.name = name;
+            this.invMode = invMode;
+            this.contractMode = contractMode;
+            this.status = status;
+        }
+    }
+    
+    public class finalWrapper {
+        @AuraEnabled public List<oppWrapper> oppWrp {get;set;}
+        @AuraEnabled public LIst<cobWrapper> cobWrp{get;set;}
+        public finalWrapper(List<oppWrapper> oppWrp, List<cobWrapper> cobWrp){
+            this.oppWrp = oppWrp;
+            this.cobWrp = cobWrp;
+        }
+    }
+    
+}
