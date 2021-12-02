@@ -1,0 +1,162 @@
+<aura:component controller="surfStdPricingCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" default="00672000000QGYzAAO"/>
+    <aura:attribute name="oliRecList" type="List"/>
+    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered" aria-label="Example table of Opportunities with no row hovers">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" >Opportunity Name : {!v.oliRecList[0].Name}</th>
+            </tr>
+            <tr class="slds-line-height_reset">
+                <th class="" >Delhivery Commercials - EXPRESS</th>
+            </tr>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Opportunity Name">Weight Slab</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Account Name">Zone A</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Close Date">Zone B</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Stage">Zone C</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Confidence">Zone D</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Amount">Zone E</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="slds-hint-parent">
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">Upto 500 gms</div>
+                </td>
+                <td data-label="Account Name">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_A_Upto_500_gms__c}" /> 
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_B_Upto_500_gms__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_C_Upto_500_gms__c}" />
+                </td>
+                <td data-label="Confidence">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_D_Upto_500_gms__c}" />
+                </td>
+                <td data-label="Amount">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_E_Upto_500_gms__c}" />
+                </td>
+            </tr>
+            <tr class="slds-hint-parent">
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">RTO (Every 500 gms)</div>
+                </td>
+                <td data-label="Account Name">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_A_RTO_every_500_gms__c}" />
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_B_RTO_every_500_gms__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_C_RTO_every_500_gms__c}" />
+                </td>
+                <td data-label="Confidence">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_D_RTO_every_500_gms__c}" />
+                </td>
+                <td data-label="Amount">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_E_RTO_every_500_gms__c}" />
+                </td>
+            </tr>
+            <tr class="slds-hint-parent">
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">RTO (Every 500 gms)</div>
+                </td>
+                <td data-label="Account Name">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_A_DTO_Upto_500gm__c}" />
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_B_DTO_Upto_500gm__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_C_DTO_Upto_500gm__c}" />
+                </td>
+                <td data-label="Confidence">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_D_DTO_Upto_500gm__c}" />
+                </td>
+                <td data-label="Amount">
+                    <lightning:input name=""  required=""  label=" " value="{!v.oliRecList[0].Zone_E_DTO_Upto_500gm__c}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <ui:outputText value="Payment link on Delivery (PLOD)" />
+                    <lightning:input aura:id="plodCheckBox" type="toggle" label="" name="input1" value="{!v.oliRecList[0].Payment_Link__c}" onchange="{! c.handleCheckBoxBlur }"/>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Threshold
+                </th>
+                <th>
+                    Transaction Charge (INR)
+                </th>
+                <th>
+                    Transaction Rate (%)
+                </th>
+            </tr>
+            <tr>
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">Credit Card</div>
+                </td>
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub"></div>
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input aura:id="ccFlat" name=""  required=""  label=" " value="{!v.oliRecList[0].CC_Flat__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input aura:id="ccPercent" name=""  required=""  label=" " value="{!v.oliRecList[0].CC_percentage__c}" />
+                </td>
+            </tr>
+            <tr>
+                <td data-label="Account Name" rowspan="2">
+                    <div class="slds-truncate"  title="Cloudhub">Debit Card</div>
+                </td>
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; 2000</div>
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input aura:id="dcFlat" name=""  required=""  label=" " value="{!v.oliRecList[0].DC_Flat__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input aura:id="dcPecent" name=""  required=""  label=" " value="{!v.oliRecList[0].DC_percentage__c}" />
+                </td>
+            </tr>
+            <tr>
+                <td data-label="Account Name">
+                    <div class="slds-truncate" title="Cloudhub">&gt; 2000</div>
+                </td>
+                <td data-label="Close Date">
+                    <lightning:input aura:id="dcFlat2k" name=""  required=""  label=" " value="{!v.oliRecList[0].DC_Flat_Greater_then_2k__c}" />
+                </td>
+                <td data-label="Prospecting">
+                    <lightning:input aura:id="dcPercent2k" name=""  required=""  label=" " value="{!v.oliRecList[0].DC_Percent_Greater_then_2k__c}" />
+                </td>
+            </tr>       
+        </tbody>
+    </table>
+    <br/>
+    <div class="slds-clearfix">
+        <div class="slds-align_absolute-center">
+            <lightning:button class="slds-align_absolute-center" variant="brand" label="Save" title="Save Products to opportunity" onclick="{! c.handleClick }" />
+        </div>
+    </div>
+</aura:component>
