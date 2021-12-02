@@ -1,0 +1,48 @@
+({
+	doInit : function(component, event, helper) {
+		var action = component.get("c.getOLIData");
+        action.setParams({
+            "oppId" : component.get("v.recordId")
+        });
+        action.setCallback(this,function(response){
+            var val = response.getReturnValue();
+            component.set("v.oliRecList",val);
+        });
+        $A.enqueueAction(action);
+	},
+    
+    handleCheckBoxBlur : function(component, event, helper){
+        var plodCB = component.find("plodCheckBox").get("v.checked");
+        if(plodCB){
+            component.find("ccFlat").set("v.disabled", true);
+            component.find("ccPercent").set("v.disabled", true);
+            component.find("dcFlat").set("v.disabled", true);
+            component.find("dcPecent").set("v.disabled", true);
+            component.find("dcFlat2k").set("v.disabled", true);
+            component.find("dcPercent2k").set("v.disabled", true);
+            component.find("ccFlat").set("v.disabled", true);
+        }else{
+            component.find("ccFlat").set("v.disabled", false);
+            component.find("ccPercent").set("v.disabled", false);
+            component.find("dcFlat").set("v.disabled", false);
+            component.find("dcPecent").set("v.disabled", false);
+            component.find("dcFlat2k").set("v.disabled", false);
+            component.find("dcPercent2k").set("v.disabled", false);
+            component.find("ccFlat").set("v.disabled", false);
+        }
+    },
+    
+    handleClick : function(component, event, helper){
+        var oliLst = component.get("v.oliRecList");
+        console.log('val oli --> ' + JSON.stringify(oliLst) );
+        var action = component.get("c.saveOLI");
+        action.setParams({
+            "oliLst" : oliLst
+        });
+        action.setCallback(this, function(response){
+            var status = response.getState();
+            console.log('status --> ' + status );
+        });
+        $A.enqueueAction(action);
+    }
+})
