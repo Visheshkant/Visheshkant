@@ -26,8 +26,6 @@ public class surfStdPricingCtrl {
     
     @AuraEnabled
     public static void fetchDashboardRec(){
-        List<Customer_Onboarding__c> cobLst = [SELECT id, name, Opportunity__c FROM Customer_Onboarding__c LIMIT 10];
-
     }
     
     public class cobWrapper {
